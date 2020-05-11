@@ -1,26 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Routes from './routes';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import './StylesGlobal/global.sass';
+
+import Menu from './Components/Menu';
+import Footer from './Components/Footer';
+import Container from './Components/PageContainer';
+
+export default class app extends React.Component {
+
+    render() { 
+        return ( 
+            <>
+                <Menu />
+                    <Container>
+                        <Routes /> 
+                    </Container>
+                {/* <Footer /> */}
+            </>
+        ) 
+    }
+
 }
 
-export default App;
