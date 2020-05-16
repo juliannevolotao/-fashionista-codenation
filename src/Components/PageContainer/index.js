@@ -2,16 +2,13 @@ import React from 'react';
 
 import './styles.sass';
 
-class PageContainer extends React.Component{
+export default function PageContainer(props){
 
-    render() {
         return (
             <div>
                 Container
-                {this.props.children}
+                {props.children}
             </div>
         )
-    }
+    
 }
-
-export default PageContainer;

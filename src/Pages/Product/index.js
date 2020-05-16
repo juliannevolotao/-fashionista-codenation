@@ -1,22 +1,13 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-class Product extends React.Component {
+export default function Product(props) {
 
     
-    constructor(props) {
-        super(props)
-        
-        this.state = {
-            id: props.match.params.id
-        }
-    }
+    const { id } = useParams();
 
-    render() {
-        return (
-            <div> Produto {this.state.id} </div>
-        )
-    }
+    return (
+        <div> Produto {id} </div>
+    )
+    
 }
-
-export default Product
