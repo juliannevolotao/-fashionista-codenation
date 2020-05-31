@@ -1,31 +1,59 @@
-.cart--disable
-    display: none
+// Animations ____
+
+.fade--active, .cart--active
+   animation: active .4s forwards
+
+.fade--disable, .cart--disable
+   animation: disable .4s forwards
+
+
+@keyframes active
+   0%
+      opacity: 0
+      visibility: hidden
+   100%
+      opacity: 1
+      visibility: visible
+
+@keyframes disable
+   0%
+      opacity: 1
+      visibility: visible
+   100%
+      opacity: 0
+      visibility: hidden
+
+// ____
+
 
 .cart 
-    width: 100%
-    height: 100vh
-    position: fixed
-    display: flex
-    justify-content: center
-    align-items: center
-    z-index: 2
+   position: fixed
+   z-index: 2
 
-    .cart__fade
-        width: 100%
-        height: 100vh
-        position: absolute
-        top: 0
-        background-color: rgba(0,0,0, 0.5)
-        border: none
-        outline: none
-    
-    .cart__content
-        z-index: 1
-        width: 90%
-        background-color: #F5F5F5
-        height: 90vh
-        display: flex
-        flex-direction: column
+.cart__fade
+   width: 100%
+   height: 100vh 
+   position: fixed
+   top: 0
+   background-color: rgba(0,0,0, 0.5)
+   border: none
+   outline: none
+   transition: display .4s
+   display: flex
+   z-index: 1
+
+.cart__container
+   align-items: center
+   justify-content: center
+   z-index: 2
+   display: flex
+
+   .cart__content
+      margin: auto
+      background-color: #F5F5F5
+      display: flex
+      flex-direction: column
+      
 
 
 .cart__header
@@ -60,11 +88,119 @@
       color: white  
       font-size: 18px
 
+
+
+
+
 .cart__body
+  width: 100%
+  height: calc(100% - 170px)
+  padding: 30px
+  display: flex
+  flex-direction: column
+  box-sizing: border-box
+  z-index: 2
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1)
+  overflow-y: auto 
+  overflow-x: hidden
+
+  .cart__item
     width: 100%
-    height: calc(100% - 170px)
-    z-index: 2
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1)
+    height: 180px
+    border-bottom: 1px solid rgba(0,0,0,0.1)
+    padding: 20px 0
+    box-sizing: border-box
+    display: flex
+
+    &:first-of-type
+      padding-top: 0
+
+  .item__image
+    height: 140px
+    width: 100px
+    background: linear-gradient(to bottom, pink, red)
+  
+  .item__infos
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    margin-left: 20px
+    width: calc(100% - 120px)
+
+    .item__name
+      span 
+        color: #9A9A9A
+        font-size: 0.6rem
+      h3
+        color: #1F1F1F
+        font-size: 0.9rem
+        text-transform: uppercase
+
+    .item__price
+      p
+        font-size: 0.6rem
+        color: #1F1F1F
+      
+      span 
+        font-weight: bold
+        font-size: 1rem
+
+    .item__actions
+      display: flex
+      justify-content: space-between
+      width: 100%
+
+      .action__amount
+        display: flex
+        align-items: center
+
+        span 
+          font-size: 1rem
+          padding: 0 8px
+          color: #9A9A9A
+
+        button 
+          display: inline-flex
+          justify-content: center
+          align-items: center
+          width: 22px
+          height: 22px
+          border: 1px solid #b9b9b9
+          box-shadow: 0px 0px 5px rgba(0,0,0,0.05)
+          background-color: white
+          outline: none
+          border-radius: 2px
+          cursor: pointer
+          transition: background .3s
+          font-weight: bold
+          color: #9A9A9A
+
+          &:hover
+            background-color: #f1f1f1
+          &:active
+            border-color: transparent
+            background-color: #FF5555
+            color: white
+
+      .action__delete
+        border: none
+        background-color: transparent
+        outline: transparent 
+        color: #FF5555
+        cursor: pointer
+        transition: transform .3s
+
+        &:hover 
+          transform: scale(1.05)
+        &:active
+          transform: scale(0.99)
+        
+         
+
+.alignItems 
+    align-items: center
+    justify-content: center
+
 
 .cart__footer
     height: 170px
@@ -110,19 +246,55 @@
 
 
 
-@media (min-width: 1024px)
-    .cart 
-        width: 100%
-        height: 100vh
-        position: fixed
-        display: block
-        
+@media ( max-width: 1024px )
+   .cart__container
+      position: fixed
+      width: 100%
+      height: 100vh
+ 
+      .cart__content 
+         position: fixed
+         width: 95%
+         height: 95vh
 
-    .cart__content
-        height: 100vh !important
-        width: 380px !important
-        position: absolute
-        z-index: 2
-        right: 0
-        top: 0
-        
+
+
+@media ( min-width: 1024px )
+
+   .cart--active
+      animation: activeSlide .4s forwards
+
+   .cart--disable
+      animation: disableSlide .4s forwards
+
+   @keyframes activeSlide
+      0%
+         right: -200vh
+         visibility: hidden
+      100%
+         right: 0
+         visibility: visible
+
+   @keyframes disableSlide
+      0%
+         right: 0
+         visibility: visible
+      100%
+         right: -200vh
+         visibility: hidden
+
+
+   .cart__container
+      height: 100vh 
+      width: 380px 
+      position: fixed
+      right: 0
+      top: 0
+
+      .cart__content
+         width: 100% 
+         height: 100vh 
+         position: relative
+         right: 0
+         top: 0
+   

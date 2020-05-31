@@ -1,0 +1,259 @@
+.item 
+  width: 100%
+  padding: 30px
+  box-sizing: border-box
+  
+
+  .back__button
+    text-decoration: none
+    display: flex
+    align-items: center
+    color: #454545
+    transition: color .4s
+
+    &:hover 
+      color: #FF5555 
+    &:active
+
+    span 
+      margin-left: 5px
+      font-size: 15px
+      
+.item__content
+  display: flex
+  flex-direction: column
+  padding: 30px 0
+
+  .item__title
+    margin-bottom: 20px
+    h4
+      font-size: 20px
+      font-weight: bold 
+      text-transform: uppercase
+      line-height: 18px
+    span 
+      font-size: 16px 
+      color: #9A9A9A
+
+  .item__image
+    height: 460px
+    border: 1px solid rgba(0, 0, 0, 0.05)
+
+
+.item__info 
+  padding: 30px 0
+
+  .info__title 
+    display: flex
+    flex-direction: column
+    margin-bottom: 20px
+
+    h5 
+      font-size: 17px
+      text-transform: uppercase
+
+    span 
+      font-size: 13px 
+      color: #9A9A9A
+
+  .info__price 
+    p 
+      font-size: 22px
+      color: #FF5555
+      font-weight: bold
+    span 
+      font-size: 14px
+
+  .info__divider
+    width: 100% 
+    height: 1px 
+    background-color: rgba(0,0,0,0.1)
+    margin: 20px 0
+
+
+.info__size
+
+  .size__chosen
+    display: flex
+    align-items: center
+    margin-bottom: 10px
+
+    p
+      font-weight: bold 
+      text-transform: uppercase
+      font-size: 14px
+      margin-right: 10px
+    span 
+      color: #9A9A9A
+  
+  .size__options
+    display: flex
+    margin-bottom: 30px
+
+    .option__box
+      position: relative
+      border-radius: 2px
+      width: 35px
+      height: 35px
+      display: flex
+      align-items: center
+      justify-content: center
+      margin-right: 10px
+      background-color: #ffffff
+      border: 1px solid rgba(0,0,0,0.1)
+      box-shadow: 0px 0px 5px rgba(0,0,0,0.05)
+      transition: all .3s
+      cursor: pointer
+      color: #9A9A9A
+
+      &:hover 
+        transform: scale(0.95)
+        box-shadow: 0px 0px 1px #FF5555
+
+    .option__box--active
+      background-color: #454545
+      color: #ffffff
+
+    .option__box--disable
+      position: absolute
+      width: 100%
+      height: 100%
+      color: #FF5555
+      opacity: .7
+
+.info__quantity
+  display: flex
+  align-items: center
+  margin-bottom: 40px 
+
+  p
+    font-weight: bold 
+    text-transform: uppercase
+    font-size: 14px
+    margin-right: 10px
+  input 
+    border-radius: 2px
+    width: 35px
+    height: 25px
+    text-align: center
+    background-color: #ffffff
+    border: 1px solid rgba(0,0,0,0.1)
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.05)
+    color: #9A9A9A
+    font-weight: bold
+    outline-color: #ff55553b
+
+    
+input[type=number]::-webkit-inner-spin-button 
+    -webkit-appearance: none
+    
+input[type=number] 
+   -moz-appearance: textfield
+   appearance: textfield
+
+
+.info__add
+  width: 100%
+  height: 50px
+  background-color: #22cf86
+  border: none
+  font-size: 18px
+  text-transform: uppercase
+  display: flex
+  align-items: center
+  justify-content: center
+  color: white
+  font-weight: bold
+  outline: none
+  transition: transform .3s
+  cursor: pointer
+  border-radius: 5px
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.20)
+
+  &:hover
+    transform: scale(0.98)
+  &:active
+    transform: scale(0.96)
+
+  .add__bag
+    margin-left: 15px
+
+
+.promo
+  display: flex
+  flex-direction: column 
+  height: fit-content
+
+  h4 
+    font-size: 17px
+    text-transform: uppercase
+
+  .promos__list
+    position: absolute
+    background-color: #EEEEEE
+    width: 100%
+    left: 0
+    margin: 50px 0 80px
+    height: 280px   
+    display: flex
+    justify-content: center
+    
+
+    .promo__container 
+      width: 100%
+      height: 100%
+      max-width: 1024px
+      padding: 20px 30px
+      box-sizing: border-box
+      display: flex
+      overflow-x: auto
+      overflow-y: hidden
+
+.promo__list
+  min-width: 200px
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  margin-right: 20px
+  cursor: pointer
+  transition: transform .3s
+
+  &:hover
+    transform: scale(0.99)
+
+  &:last-of-type
+    margin-right: 0px
+
+  .promo__image 
+    height: 80%
+    border: 1px solid rgba(0,0,0,0.05)
+    position: relative
+
+    .promo__tag
+      position: absolute
+      right: 0
+      padding: 8px 5px 
+      border-radius: 4px
+      border: 1px solid rgba(0,0,0,0.2)
+      background-color: #fff 
+      color: #9A9A9A
+
+
+
+  span
+    text-transform: uppercase
+    font-weight: normal
+    font-size: 13px
+
+  .promo__values
+    display: flex
+    align-items: center
+
+    .promo__price 
+      color: #9A9A9A
+      text-decoration: line-through
+      margin-right: 5px
+
+    .promo__discount
+      font-size: 15px
+      font-weight: bold

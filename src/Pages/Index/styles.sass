@@ -1,0 +1,62 @@
+.items 
+  width: 100%
+  padding: 30px
+  box-sizing: border-box
+
+  h4 
+    font-size: 14px
+    color: #9A9A9A
+    font-weight: normal
+
+  .items__list
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
+    padding-top: 20px
+
+  .item__list
+    min-width: 220px
+    height: 310px
+    margin-bottom: 30px
+    transition: transform .3s
+    cursor: pointer
+    text-decoration: none
+
+    &:hover
+      transform: scale(0.98)
+
+    .item__image 
+      height: 250px
+      width: 100%
+      border: 1px solid rgba(0,0,0,0.05)
+
+    
+.item__text
+  padding-top: 10px
+
+  .item__name
+    font-size: 15px
+    color: #1F1F1F
+    margin-bottom: 5px
+    text-transform: uppercase
+
+  .item__price
+    font-size: 18px
+    font-weight: 500
+    color: #000000
+
+  .item__discount
+    display: flex
+    align-items: center
+
+    .item__price
+      margin-right: 5px
+      color: #9A9A9A
+      font-weight: normal
+      font-size: 14px
+      text-decoration: line-through
+
+    .discount__price
+      color: #000000
+      font-weight: 500
+      font-size: 18px

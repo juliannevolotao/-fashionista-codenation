@@ -8,6 +8,8 @@ import Footer from './Components/Footer';
 import Container from './Components/PageContainer';
 import Cart from './Components/Cart';
 
+import animationData from './assets/lotties/cart.json';
+
 
 export default function App() {
     
@@ -20,11 +22,12 @@ export default function App() {
     const onCartButtonClose = () => {
         setCartOpen(!isCartOpen);
     }
-    
- 
+
     return ( 
         <>
-            {isCartOpen && <Cart callbackApp={() => onCartButtonClose()} />}
+           
+            <Cart animation={animationData} visible={isCartOpen} callbackApp={() => onCartButtonClose()} />
+    
             <Menu callbackApp={() => onCartButtonOpen()} />
                 <Container>
                     <Routes /> 
