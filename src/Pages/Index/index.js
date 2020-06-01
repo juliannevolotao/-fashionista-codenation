@@ -15,7 +15,8 @@ export default function Index () {
 
               <Link className="item__list" to="/produto/1">
                 <div className="item__image">
-                <img src={''} alt={''} />
+                  <div className="item__promo"> 50% OFF </div>
+                  <img src={''} alt={''} />
 
                 </div>
                 <div className="item__text">
@@ -24,6 +25,39 @@ export default function Index () {
                     <span className="item__price"> R$ 139,90 </span>
                     <span className="discount__price"> R$ 69,90 </span>
                   </div>
+                </div>
+              </Link>
+
+              <Link className="item__list" to="/produto/2">
+              <div className="item__image">
+                <img src={''} alt={''} />
+
+                </div>
+                <div className="item__text">
+                  <p className="item__name"> VESTIDO TRANSPASSE BOW </p>
+                  <span className="item__price"> R$ 199,90 </span>
+                </div>
+              </Link>
+
+              <Link className="item__list" to="/produto/2">
+              <div className="item__image">
+                <img src={''} alt={''} />
+
+                </div>
+                <div className="item__text">
+                  <p className="item__name"> VESTIDO TRANSPASSE BOW </p>
+                  <span className="item__price"> R$ 199,90 </span>
+                </div>
+              </Link>
+
+              <Link className="item__list" to="/produto/2">
+              <div className="item__image">
+                <img src={''} alt={''} />
+
+                </div>
+                <div className="item__text">
+                  <p className="item__name"> VESTIDO TRANSPASSE BOW </p>
+                  <span className="item__price"> R$ 199,90 </span>
                 </div>
               </Link>
 
