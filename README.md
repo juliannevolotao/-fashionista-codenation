@@ -6,9 +6,15 @@
 <h4 align="center">
   Codenation React Online
 </h4>
-<h5 align="center">
-  Em desenvolvimento
-</h5>
+
+<br> 
+
+<h3 align="center">
+  :construction: Em desenvolvimento :construction:
+</h3>
+
+<br>
+<br> 
 
 <p align="center">
   :heart: <a href="#heart-o-projeto">O projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
