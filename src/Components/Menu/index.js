@@ -1,25 +1,34 @@
-import React from 'react';
-import './styles.sass';
+import React from "react";
+import "./styles.sass";
 
-import { FiShoppingBag, FiHeart, FiSearch } from 'react-icons/fi';
+import { FiShoppingBag, FiHeart, FiSearch } from "react-icons/fi";
 
-export default function Menu(props){
+import { useHistory, Link } from "react-router-dom";
 
+export default function Menu(props) {
+  let history = useHistory();
 
-    return (
-        <div className="menu">
-            <div className="menu__container">
-                <a href="/" className="menu__logo" >
-                    BeYou 
-                    <FiHeart size={22} className="logo__icon"/>
-                </a>
+  const handleBackHome = () => {
+    history.push("/");
+  }
 
-                <div className="menu__buttons">
-                    <FiSearch size={24} className="button__icon"/>
-                    <FiShoppingBag size={24} className="button__icon" onClick={props.callbackApp}/>
-                </div>
-            </div>
+  return (
+    <div className="menu">
+      <div className="menu__container">
+        <Link to="/" className="menu__logo">
+          BeYou
+          <FiHeart size={22} className="logo__icon" />
+        </Link>
+
+        <div className="menu__buttons">
+          <FiSearch size={24} className="button__icon" />
+          <FiShoppingBag
+            size={24}
+            className="button__icon"
+            onClick={props.callbackApp}
+          />
         </div>
-    )
-    
+      </div>
+    </div>
+  );
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
 
 import { FiArrowLeft, FiShoppingBag, FiX } from "react-icons/fi";
 
@@ -7,11 +7,16 @@ import "./styles.sass";
 
 export default function Product(props) {
   const { id } = useParams();
+  const history = useHistory();
+
+  const goToPage = () => {
+   
+  };
 
   return (
     <>
       <div className="item">
-        <Link className="back__button">
+        <Link className="back__button" to={"/"}>
           <FiArrowLeft size="22" />
           <span> Voltar </span>
         </Link>
@@ -71,8 +76,7 @@ export default function Product(props) {
           <h4> Novas promoções: </h4>
           <div className="promos__list">
             <div className="promo__container">
-
-              <div className="promo__list">
+              <div className="promo__list" onClick={() => goToPage()}>
                 <div className="promo__image">
                   <div className="promo__tag"> 50% OFF </div>
                   <img src={""} alt={""} />
@@ -95,10 +99,6 @@ export default function Product(props) {
                   <span className="promo__discount"> R$ 69,90</span>
                 </div>
               </div>
-
-              
-        
-
             </div>
           </div>
         </div>
