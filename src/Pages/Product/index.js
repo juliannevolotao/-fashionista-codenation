@@ -1,17 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams, Link, useHistory } from "react-router-dom";
 
 import { FiArrowLeft, FiShoppingBag, FiX } from "react-icons/fi";
 
 import "./styles.sass";
+import noImage from "../../assets/noImage.jpg";
 
-export default function Product(props) {
-  const { id } = useParams();
+import { connect, useDispatch } from "react-redux";
+
+function Product({ product }) {
+  // const { id } = useParams();
   const history = useHistory();
 
-  const goToPage = () => {
-   
-  };
+  useEffect(() => {
+    if (!product?.name) {
+      history.push("/");
+    }
+  }, [history]);
 
   return (
     <>
@@ -23,21 +28,29 @@ export default function Product(props) {
 
         <div className="item__content">
           <div className="item__title">
-            <h4> Vestido Transpasse Bow </h4>
-            <span> 20002570 </span>
+            <h4> {product.name} </h4>
+            <span> {product.style} </span>
           </div>
 
-          <img src={""} alt={""} className="item__image" />
+          {product.image ? (
+            <img
+              src={product.image}
+              alt={product.name}
+              className="item__image"
+            />
+          ) : (
+            <img src={noImage} alt={"No image"} className="item__image" />
+          )}
 
           <div className="item__info">
             <div className="info__title">
-              <h5> Vestido Transpasse Bow </h5>
-              <span> 20002570 </span>
+              <h5> {product.name} </h5>
+              <span> {product.style} </span>
             </div>
 
             <div className="info__price">
-              <p> R$ 199,90 </p>
-              <span> em até 3x R$ 66,63 sem juros </span>
+              <p> {product.actual_price} </p>
+              <span> em até {product.installments} sem juros </span>
             </div>
 
             <div className="info__divider"></div>
@@ -49,14 +62,19 @@ export default function Product(props) {
               </div>
 
               <div className="size__options">
-                <div className="option__box "> PP </div>
+                {product.sizes?.map((size) => (
+                  <div className={`option__box`}>
+                    {size.size}
+                    {!size.available && (
+                      <FiX className="option__box--disable" />
+                    )}
+                  </div>
+                ))}
+                {/* <div className="option__box "> PP </div>
                 <div className="option__box option__box--active"> P </div>
-                <div className="option__box ">
-                  M
-                  <FiX className="option__box--disable" />
-                </div>
+                <div className="option__box "> M <FiX className="option__box--disable" /></div>
                 <div className="option__box "> G </div>
-                <div className="option__box "> GG </div>
+                <div className="option__box "> GG </div> */}
               </div>
             </div>
 
@@ -76,7 +94,7 @@ export default function Product(props) {
           <h4> Novas promoções: </h4>
           <div className="promos__list">
             <div className="promo__container">
-              <div className="promo__list" onClick={() => goToPage()}>
+              <div className="promo__list">
                 <div className="promo__image">
                   <div className="promo__tag"> 50% OFF </div>
                   <img src={""} alt={""} />
@@ -106,3 +124,11 @@ export default function Product(props) {
     </>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    product: state.product.data,
+  };
+};
+
+export default connect(mapStateToProps)(Product);

@@ -24,9 +24,14 @@
       transform: scale(0.99)
 
     .item__image 
-      width: 100%
+   
       border: 1px solid rgba(0,0,0,0.05)
       position: relative
+
+      img 
+        overflow: hidden
+        width: 100%
+        height: 100%
 
       .item__promo
         position: absolute
@@ -75,17 +80,19 @@
 
 @media (min-width: 1024px)
   .item__list
-    min-width: 310px
+    width: 310px
     height: 445px
 
     .item__image
       height: 390px
+   
 
 
 @media (max-width: 1024px)
   .item__list
-    min-width: 210px
+    width: 210px
     height: 310px
 
     .item__image
       height: 250px
+     
