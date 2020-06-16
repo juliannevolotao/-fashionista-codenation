@@ -5,9 +5,10 @@ import { FiArrowLeft, FiShoppingBag, FiX } from "react-icons/fi";
 
 import "./styles.sass";
 import noImage from "../../assets/noImage.jpg";
+import { animateScroll as scroll } from "react-scroll";
+import { toast } from "react-toastify";
 
 import { connect, useDispatch } from "react-redux";
-// import { setSelectedSize } from "../../Store/Actions/oneProduct";
 import { setItemInCart } from "../../Store/Actions/cart";
 
 function Product({ product, size }) {
@@ -19,6 +20,7 @@ function Product({ product, size }) {
 
   useEffect(() => {
     size = "";
+    scroll.scrollToTop();
   });
 
   useEffect(() => {
@@ -30,20 +32,27 @@ function Product({ product, size }) {
 
   const handleSelectSize = (size) => {
     if (!size.available) {
-      return console.log("Tamanho não está disponível");
+      return toast.info("Tamanho não está disponível.");
     }
 
     setSizeSelected(size.size);
   };
 
   const handleCartAdd = () => {
-    dispatch(
-      setItemInCart({
-        product: product,
-        selectedSize: sizeSelected,
-        quantity: Number(quantity),
-      })
-    );
+
+    if(sizeSelected !== '' && sizeSelected !== "Escolha um tamanho"){
+      dispatch(
+        setItemInCart({
+          product: product,
+          selectedSize: sizeSelected,
+          quantity: Number(quantity),
+        })
+      );
+      return toast.success("Produto adicionado ao carrinho com sucesso!");
+    }
+    else {
+      return toast.info("Escolha um tamanho válido!");
+    }
   };
 
   return (
@@ -93,10 +102,11 @@ function Product({ product, size }) {
                 {product.sizes?.map((size, index) => (
                   <div
                     key={index}
-                    className={`option__box`}
+                    className={`option__box ${size.size === sizeSelected ? 'option__box--active' : ''}`}
                     onClick={() => handleSelectSize(size)}
                   >
                     {size.size}
+                    {size.size === sizeSelected}
                     {!size.available && (
                       <FiX className="option__box--disable" />
                     )}

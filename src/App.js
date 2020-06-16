@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Routes from "./routes";
 
 import "./StylesGlobal/global.sass";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Menu from "./Components/Menu";
 import Footer from "./Components/Footer";
@@ -46,9 +48,11 @@ export default function App() {
           />
 
           <Menu callbackApp={() => onCartButtonOpen()} />
+          
           <Container>
             <Routes />
           </Container>
+          <ToastContainer limit={3}/>
         </BrowserRouter>
       </Provider>
     </>
