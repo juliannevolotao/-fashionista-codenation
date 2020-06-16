@@ -12,12 +12,9 @@ import {
 
 import Lottie from "react-lottie";
 
-export default function Cart({
-  callbackApp,
-  animation,
-  cartItems,
-  visible = false,
-}) {
+import { connect } from "react-redux";
+
+function Cart({ callbackApp, animation, cartItems, visible = false }) {
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -50,45 +47,49 @@ export default function Cart({
             <p> Minha Sacola </p>
           </div>
 
-          {cartItems ? (
+          {cartItems.length !== 0 ? (
             <div className="cart__body ">
-              <div className="cart__item">
-                <div className="cart__item">
-                  {/* Foto do produto */}
-                  <div className="item__image"></div>
+              
 
-                  {/* Informações do produto */}
-                  <div className="item__infos">
-                    <div className="item__name">
-                      <h3>Vestido Transpasse Bow</h3>
-                      <span> 20002570</span>
+                {cartItems.map((item, index) => (
+                  <div key={index} className="cart__item">
+                    {/* Foto do produto */}
+                    <div className="item__image">
+                      <img src={item.product.image} alt={item.product.name} />
                     </div>
 
-                    <div className="item__price">
-                      <p> Tamanho: M</p>
-                      <span> R$ 199,00 </span>
-                    </div>
-
-                    <div className="item__actions">
-                      <div className="action__amount">
-                        <button>
-                          {" "}
-                          <FiMinus size={15} />{" "}
-                        </button>
-                        <span> 1 </span>
-                        <button>
-                          {" "}
-                          <FiPlus size={15} />{" "}
-                        </button>
+                    {/* Informações do produto */}
+                    <div className="item__infos">
+                      <div className="item__name">
+                        <h3>{item.product.name}</h3>
+                        <span> {item.product.style}</span>
                       </div>
 
-                      <button className="action__delete">
-                        <FiTrash2 size={20} />
-                      </button>
+                      <div className="item__price">
+                        <p> Tamanho: {item.selectedSize} </p>
+                        <span> {item.product.actual_price} </span>
+                      </div>
+
+                      <div className="item__actions">
+                        <div className="action__amount">
+                          <button>
+                            <FiMinus size={15} />
+                          </button>
+                          <span> {item.quantity} </span>
+                          <button>
+                            <FiPlus size={15} />
+                          </button>
+                        </div>
+
+                        <button className="action__delete">
+                          <FiTrash2 size={20} />
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                ))}
+
+              
             </div>
           ) : (
             <div className="cart__body alignItems">
@@ -113,3 +114,12 @@ export default function Cart({
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  console.log(state);
+  return {
+    cartItems: state.cart.cartItems,
+  };
+};
+
+export default connect(mapStateToProps)(Cart);

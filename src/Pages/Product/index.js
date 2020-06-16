@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, Link, useHistory } from "react-router-dom";
 
 import { FiArrowLeft, FiShoppingBag, FiX } from "react-icons/fi";
@@ -7,16 +7,44 @@ import "./styles.sass";
 import noImage from "../../assets/noImage.jpg";
 
 import { connect, useDispatch } from "react-redux";
+// import { setSelectedSize } from "../../Store/Actions/oneProduct";
+import { setItemInCart } from "../../Store/Actions/cart";
 
-function Product({ product }) {
-  // const { id } = useParams();
+function Product({ product, size }) {
+  const dispatch = useDispatch();
   const history = useHistory();
+
+  const [quantity, setQuantity] = useState(1);
+  const [sizeSelected, setSizeSelected] = useState("");
+
+  useEffect(() => {
+    size = "";
+  });
 
   useEffect(() => {
     if (!product?.name) {
       history.push("/");
     }
+    setSizeSelected("Escolha um tamanho");
   }, [history]);
+
+  const handleSelectSize = (size) => {
+    if (!size.available) {
+      return console.log("Tamanho não está disponível");
+    }
+
+    setSizeSelected(size.size);
+  };
+
+  const handleCartAdd = () => {
+    dispatch(
+      setItemInCart({
+        product: product,
+        selectedSize: sizeSelected,
+        quantity: Number(quantity),
+      })
+    );
+  };
 
   return (
     <>
@@ -58,12 +86,16 @@ function Product({ product }) {
             <div className="info__size">
               <div className="size__chosen">
                 <p> Tamanho: </p>
-                <span> P </span>
+                <span> {sizeSelected} </span>
               </div>
 
               <div className="size__options">
-                {product.sizes?.map((size) => (
-                  <div className={`option__box`}>
+                {product.sizes?.map((size, index) => (
+                  <div
+                    key={index}
+                    className={`option__box`}
+                    onClick={() => handleSelectSize(size)}
+                  >
                     {size.size}
                     {!size.available && (
                       <FiX className="option__box--disable" />
@@ -80,10 +112,16 @@ function Product({ product }) {
 
             <div className="info__quantity">
               <p>Quantidade:</p>
-              <input type="number" defaultValue="1" min="1" max="10" />
+              <input
+                type="number"
+                min="1"
+                max="10"
+                value={quantity}
+                onChange={(e) => setQuantity(e.target.value)}
+              />
             </div>
 
-            <button className="info__add">
+            <button className="info__add" onClick={() => handleCartAdd(size)}>
               Colocar na sacola
               <FiShoppingBag size="24" className="add__bag" />
             </button>
@@ -126,8 +164,10 @@ function Product({ product }) {
 }
 
 const mapStateToProps = (state) => {
+  // console.log(state);
   return {
     product: state.product.data,
+    cartItems: state.cartItems,
   };
 };
 

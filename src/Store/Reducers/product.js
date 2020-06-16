@@ -1,5 +1,5 @@
 const INICIAL_STATE = {
-    data: []
+    data: [],
 }
 
 export default function (state = INICIAL_STATE, action) {
@@ -10,6 +10,7 @@ export default function (state = INICIAL_STATE, action) {
                 ...state,
                 data: action.payload
             }
+    
         default:
             return state
     }

@@ -33,6 +33,8 @@ export default function App() {
     setCartOpen(!isCartOpen);
   };
 
+
+
   return (
     <>
       <Provider store={store}>
